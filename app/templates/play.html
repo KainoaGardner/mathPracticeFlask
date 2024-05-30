@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block title %}Play{% endblock %} {% block content %}
+<h1>Play</h1>
+<p>Correct: {{ score[0] }}</p>
+<p>Total: {{ score[1] }}</p>
+{% if score[1] > 0 %}
+<p>Percentage: {{ score[0] / score[1] }}%</p>
+{% else %}
+<p>Percentage: 0%</p>
+{% endif %} {% endblock %}

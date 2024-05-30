@@ -1,0 +1,15 @@
+{% extends "base.html" %}{% block title %}Home{% endblock %} {% block content %}
+{% with messages = get_flashed_messages() %} {% if messages %} {% for message in
+messages %}
+<p>{{message}}</p>
+{% endfor %} {% endif %}{% endwith %}
+<h1>{{ user.username }}</h1>
+<hr />
+<p><b>Date Registered:</b> {{ user.registerDate }}</p>
+<p><b>Total Problems:</b> {{ user.totalProblems }}</p>
+<p><b>Total Correct:</b> {{ user.totalCorrect }}</p>
+{% if user.totalProblems > 0 %}
+<p><b>Total Percent:</b> {{ user.totalCorrect }}</p>
+{% else %}
+<p><b>Total Percent:</b> 0%</p>
+{% endif %} {% endblock %}
