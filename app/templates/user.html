@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block css %}
+{% endblock %}
+{% block title %}Home{% endblock %} {% block content %}
+{% with messages = get_flashed_messages() %} {% if messages %} {% for message in
+messages %}
+<p>{{message}}</p>
+{% endfor %} {% endif %}{% endwith %}
+<h1>{{ user.username }}</h1>
+<hr />
+<p><b>Date Registered:</b> {{ user.registerDate }}</p>
+<p><b>Total Correct:</b> {{ user.totalCorrect }}</p>
+<p><b>Total Problems:</b> {{ user.totalProblems }}</p>
+<p><b>Total Percent:</b> {{ user.totalPercent }}%</p>
+<a href="{{ url_for('resetStats') }}">Reset Stats</a>
+
+<hr>
+<h2>Settings</h2>
+<form action="" method="post">
+  <label>Theme</label><br>
+
+  {% if user.theme == "light" %}
+    <input type="submit" name="dark" value="Dark Mode"> 
+  {% else %}
+  <input type="submit" name="light" value="Light Mode"> 
+  {% endif %}
+</form>
+
+{% endblock %}

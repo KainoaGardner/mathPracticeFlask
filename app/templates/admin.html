@@ -5,9 +5,11 @@
 <hr />
 
 {% for user in users %}
-<div>
+<ol>
+  <li >
   <p>Username: {{ user.username }}</p>
   <p>Password: {{ user.password }}</p>
   <p>Register Date: {{ user.registerDate }}</p>
-</div>
+  <li>
+</ol>
 {% endfor %} {% endblock %}

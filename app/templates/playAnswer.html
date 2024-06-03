@@ -1,0 +1,24 @@
+{% extends "base.html" %}{% block title %}Play{% endblock %} {% block content %}
+<h1>Play</h1>
+<div>
+  <p>Correct: {{ score[0] }}</p>
+  <p>Total: {{ score[1] }}</p>
+  <p>Percentage: {{ score[2] }}%</p>
+</div>
+
+<div>
+  <h2>{{equation}}</h2>
+  <h3>{{ result }}</h3>
+  <p>Answer: {{answer}}</p>
+  <form action="" method="post">
+    <input type="submit" name="next" value="Next" />
+  </form>
+</div>
+
+<div>
+  <h2>History</h2>
+  {% for equation in history %}
+  <li>{{ equation[0] }}</li>
+  {% endfor %}
+</div>
+{% endblock %}

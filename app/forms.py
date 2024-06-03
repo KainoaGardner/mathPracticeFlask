@@ -8,10 +8,14 @@ class User(db.Model):
     registerDate = db.Column(db.String((100)))
     totalProblems = db.Column(db.Integer)
     totalCorrect = db.Column(db.Integer)
+    totalPercent = db.Column(db.Integer)
+    theme = db.Column(db.String((10)))
 
-    def __init__(self, username, password, registerDate, totalProblems, totalCorrect):
+    def __init__(self, username, password, registerDate):
         self.username = username
         self.password = password
         self.registerDate = registerDate
-        self.totalProblems = totalProblems
-        self.totalCorrect = totalCorrect
+        self.totalProblems = 0
+        self.totalCorrect = 0
+        self.totalPercent = 0
+        self.theme = "light"

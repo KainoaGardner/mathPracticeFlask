@@ -1,9 +1,62 @@
-{% extends "base.html" %}{% block title %}Play{% endblock %} {% block content %}
+{% extends "base.html" %}
+{% block title %}Play{% endblock %} {% block content %}
 <h1>Play</h1>
+<h2>Stats</h2>
+<div>
 <p>Correct: {{ score[0] }}</p>
 <p>Total: {{ score[1] }}</p>
-{% if score[1] > 0 %}
-<p>Percentage: {{ score[0] / score[1] }}%</p>
-{% else %}
-<p>Percentage: 0%</p>
-{% endif %} {% endblock %}
+<p>Percentage: {{ score[2] }}%</p>
+</div>
+
+
+<div>
+  <h2>{{equation}}</h2>
+
+  <form action="" method="post">
+    <input type="number" name="input" required><br>
+    <input type="submit" name="answer" value="Answer">
+<br>
+  </form>
+  <h2>Settings</h2>
+  <form action="" method="post">
+    <label for="digits">Digits</label>
+    {% if settings %}
+    <input type="number" name="digits" max="10" min="1" placeholder="2" value="{{ settings['digits'] }}"required><br>
+    {% else %}
+    <input type="number" name="digits" placeholder="2" max="10" min="1" required><br>
+    {% endif %}
+
+    <label for="problemType">Operator</label>
+
+    {% if settings["problemType"] == "*" %}
+    <select name="problemType">
+      <option value="*">*</option>
+      <option value="/">/</option>
+      <option value="+-">+-</option>
+    </select><br>
+    {% elif settings["problemType"] == "/" %}
+    <select name="problemType">
+      <option value="*">*</option>
+      <option value="+-">+-</option>
+      <option value="/">/</option>
+    </select><br> 
+    {% else %}
+    <select name="problemType">
+      <option value="+-">+-</option>
+      <option value="*">*</option>
+      <option value="/">/</option>
+    </select><br>
+    {% endif %}
+    <input type="submit" name="apply" value="Apply">
+  </form>
+</div>
+
+
+<div>
+  <h2>History</h2>
+  {% for equation in history %}
+  <li>{{ equation[0] }}</li>
+  {% endfor %}
+</div>
+{% endblock %}
+
