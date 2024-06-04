@@ -268,7 +268,7 @@ def clearDB():
     for table in reversed(meta.sorted_tables):
         db.session.execute(table.delete())
         db.session.commit()
-    return redirect(url_for("user"))
+    return redirect(url_for("logout"))
 
 
 @app.route("/resetStats")

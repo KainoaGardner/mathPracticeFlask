@@ -1,15 +1,20 @@
 {% extends "base.html" %}{% block title %}Admin{% endblock %} 
 {% block css %}
-<link rel="stylesheet" href="static/admin.css">
+<link rel="stylesheet" href="static/admin/admin.css">
+{% if theme == "dark" %}
+<link rel="stylesheet" href="static/admin/admin-dark.css">
+{% else %}
+<link rel="stylesheet" href="static/admin/admin-light.css">
+{% endif %}
 
 {% endblock %}
 
-
-
 {% block content
 %}
+
+<div class="background">
 <h1>All Users</h1>
-<a href="{{ url_for('clearDB') }}">Clear all</a>
+<a class="nav" href="{{ url_for('clearDB') }}">Clear all</a>
 <hr />
 
 {% for user in users %}
@@ -22,4 +27,6 @@
 </ol>
 
 <hr>
-{% endfor %} {% endblock %}
+{% endfor %} 
+</div>
+{% endblock %}

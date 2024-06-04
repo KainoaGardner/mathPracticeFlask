@@ -7,3 +7,9 @@ ol {
   margin: 0 0;
   padding: 0 0;
 }
+
+.background {
+  padding: 10px 10px;
+  border: solid;
+  border-width: 2px;
+}
