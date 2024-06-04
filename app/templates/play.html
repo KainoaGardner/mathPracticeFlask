@@ -45,15 +45,15 @@
       <h2 class="stats-title">Stats</h2>
       <div class="stats-row">
         <p class="stats">Correct: </p>
-        <p class="stats"> {{ score[0] }} </p>
+        <p class="stats value"> {{ score[0] }} </p>
       </div>
       <div class="stats-row">
           <p class="stats">Total: </p>
-        <p class="stats"> {{ score[1] }} </p>
+        <p class="stats value"> {{ score[1] }} </p>
       </div>
       <div class="stats-row">
           <p class="stats">Percentage: </p>
-      <p class="stats"> {{ score[2] }}%</p>
+      <p class="stats value"> {{ score[2] }}%</p>
       </div>
     </div>
 
@@ -82,9 +82,9 @@
       </select>
       {% elif settings["problemType"] == "/" %}
       <select class="select" name="problemType">
-        <option value="*">*</option>
-        <option value="+-">+-</option>
         <option value="/">/</option>
+        <option value="+-">+-</option>
+        <option value="*">*</option>
       </select> 
       {% else %}
       <select class="select" name="problemType">
@@ -100,5 +100,9 @@
     </form>
   </div>
 </div>
+{% with messages = get_flashed_messages() %} {% if messages %} {% for message in
+messages %}
+<p class="error">{{message}}</p>
+{% endfor %} {% endif %}{% endwith %}
 {% endblock %}
 

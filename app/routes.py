@@ -15,15 +15,19 @@ def user():
     user = User.query.filter_by(username=username).first()
 
     if request.method == "POST":
+        theme = ""
         if "dark" in request.form:
             user.theme = "light"
+            theme = "light"
             session["theme"] = "light"
         if "light" in request.form:
             user.theme = "dark"
+            theme = "dark"
             session["theme"] = "dark"
 
         db.session.commit()
 
+        flash(f"Theme changed to: {theme}")
         return redirect(url_for("user"))
 
     if user.totalProblems != 0:
@@ -106,13 +110,13 @@ def play():
 
         elif "apply" in request.form:
 
-            print(request.form["problemType"])
             settings = {
                 "digits": request.form["digits"],
                 "problemType": request.form["problemType"],
             }
             session["settings"] = settings
             problemType = None
+            flash("Settings have been changed")
             return redirect(url_for("play"))
 
     score = session["score"]
@@ -233,6 +237,8 @@ def logout():
         session.pop("equation", None)
         session.pop("result", None)
         flash(f"You have been logged out")
+    else:
+        flash(f"You are not logged in")
     return redirect(url_for("login"))
 
 
@@ -285,6 +291,7 @@ def resetStats():
         session.pop("score", None)
         session.pop("equation", None)
         session.pop("result", None)
+    flash(f"Your stats have been reset")
 
     return redirect(url_for("user"))
 

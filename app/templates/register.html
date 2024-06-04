@@ -10,20 +10,22 @@
 {% block
 content %}
 <h1>Register</h1>
+{% with messages = get_flashed_messages() %} {% if messages %} {% for message in
+messages %}
+<p class="error">{{message}}</p>
+{% endfor %} {% endif %}{% endwith %} 
 <hr />
+
 
 <div class="input">
 <form class="input-form" action="#" method="post">
   <label for="username">Username:</label><br />
-  <input class="text-input" type="text" name="username" /><br />
+  <input class="text-input" type="text" name="username" required/><br />
   <label for="password">Password:</label><br />
-  <input class="text-input" type="password" name="password" /><br />
+  <input class="text-input" type="password" name="password" required/><br />
   <div class="register">
   <input class="theme register-button" type="submit" name="submit" value="Register" />
   </div>
 </form>
 </div>
-{% with messages = get_flashed_messages() %} {% if messages %} {% for message in
-messages %}
-<p>{{message}}</p>
-{% endfor %} {% endif %}{% endwith %} {% endblock %}
+{% endblock %}

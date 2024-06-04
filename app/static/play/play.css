@@ -85,6 +85,10 @@
   text-align: left;
 }
 
+.value {
+  font-weight: bold;
+}
+
 .digit-text {
   border: solid;
   border-width: 1px;

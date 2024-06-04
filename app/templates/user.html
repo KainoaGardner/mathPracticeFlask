@@ -9,11 +9,13 @@
 
 {% endblock %}
 {% block title %}Home{% endblock %} {% block content %}
+
+<div class="background">
 {% with messages = get_flashed_messages() %} {% if messages %} {% for message in
 messages %}
-<p>{{message}}</p>
+<p class="error">{{message}}</p>
 {% endfor %} {% endif %}{% endwith %}
-<div class="background">
+
 <h1>{{ user.username }}</h1>
 <hr />
 <h2>Stats</h2>
