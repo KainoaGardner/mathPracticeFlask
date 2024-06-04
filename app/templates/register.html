@@ -1,15 +1,28 @@
-{% extends "base.html" %}{% block title %}Register{% endblock %} {% block
+{% extends "base.html" %}{% block title %}Register{% endblock %} 
+{% block css %}
+<link rel="stylesheet" href="static/login/login.css">
+{% if theme == "dark" %}
+<link rel="stylesheet" href="static/login/login-dark.css">
+{% else %}
+<link rel="stylesheet" href="static/login/login-light.css">
+{% endif %}
+{% endblock %}
+{% block
 content %}
 <h1>Register</h1>
 <hr />
 
-<form action="#" method="post">
+<div class="input">
+<form class="input-form" action="#" method="post">
   <label for="username">Username:</label><br />
-  <input type="text" name="username" /><br />
+  <input class="text-input" type="text" name="username" /><br />
   <label for="password">Password:</label><br />
-  <input type="password" name="password" /><br />
-  <input type="submit" name="submit" value="Register" />
+  <input class="text-input" type="password" name="password" /><br />
+  <div class="register">
+  <input class="theme register-button" type="submit" name="submit" value="Register" />
+  </div>
 </form>
+</div>
 {% with messages = get_flashed_messages() %} {% if messages %} {% for message in
 messages %}
 <p>{{message}}</p>

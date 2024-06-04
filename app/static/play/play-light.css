@@ -1,0 +1,39 @@
+.left,
+.middle,
+.right {
+  background-color: #ffffff;
+  border-color: #282828;
+}
+
+.history-correct {
+  background-color: #2ecc71;
+}
+
+.history-incorrect {
+  background-color: #e74c3c;
+}
+
+.history-correct,
+.history-incorrect {
+  border-color: #121212;
+}
+
+.select {
+  background-color: #ecf0f1;
+  border-color: #121212;
+  color: #121212;
+}
+
+.digit-text {
+  background-color: #ecf0f1;
+  border-color: #121212;
+  color: #121212;
+}
+
+.pa-result-correct {
+  color: #2ecc71;
+}
+
+.pa-result-incorrect {
+  color: #e74c3c;
+}

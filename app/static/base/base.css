@@ -1,0 +1,36 @@
+.theme {
+  font-size: 15px;
+  font-weight: bold;
+  border: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  margin: 0px 0px;
+  padding: 5px 5px;
+}
+
+.text-input {
+  margin: 10px 5px;
+  border-radius: 1px;
+  border: solid;
+  border-width: 1px;
+  font-size: 15px;
+  padding: 5px 10px;
+
+  /* width: px; */
+}
+
+.error {
+  font-size: 15px;
+  font-weight: bold;
+  color: #e74c3c;
+  text-align: center;
+}
+
+.nav {
+  border: solid;
+  border-width: 1px;
+  padding: 5px 5px;
+  font-weight: bold;
+  margin: 5px 0;
+  text-decoration: none;
+}

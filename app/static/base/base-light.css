@@ -1,0 +1,33 @@
+body {
+  background-color: #ecf0f1;
+}
+p,
+h1,
+h2,
+h3,
+ul,
+label {
+  color: #121212;
+}
+a {
+  color: #2980b9;
+}
+
+.text-input {
+  background-color: #ecf0f1;
+  color: #121212;
+  border-color: #282828;
+}
+
+.theme {
+  background-color: #ecf0f1;
+  border-color: #121212;
+
+  color: #121212;
+}
+
+.nav {
+  background-color: #ffffff;
+  border-color: #282828;
+  color: #282828;
+}

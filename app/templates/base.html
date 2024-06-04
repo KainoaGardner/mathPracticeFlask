@@ -2,20 +2,23 @@
 <html>
   <head>
     <title>{% block title %}{% endblock %}</title>
-{% if user.theme == "light" %}
+
+<link rel="stylesheet" href="static/base/base.css">
+{% if theme == "dark" %}
+<link rel="stylesheet" href="static/base/base-dark.css">
 {% else %}
-<link rel="stylesheet" href="static/base-dark.css">
+<link rel="stylesheet" href="static/base/base-light.css">
 {% endif %}
     {% block css %}{% endblock %}
   </head>
   <body>
     <div>
-      <a href="{{ url_for('user') }}">User</a>
-      <a href="{{ url_for('playSetup') }}">Play</a>
-      <a href="{{ url_for('login') }}">Login</a>
-      <a href="{{ url_for('logout') }}">Logout</a>
-      <a href="{{ url_for('register') }}">Register</a>
-      <a href="{{ url_for('admin') }}">Admin</a>
+      <a class="nav" href="{{ url_for('user') }}">User</a>
+      <a class="nav" href="{{ url_for('playSetup') }}">Play</a>
+      <a class="nav" href="{{ url_for('login') }}">Login</a>
+      <a class="nav" href="{{ url_for('logout') }}">Logout</a>
+      <a class="nav" href="{{ url_for('register') }}">Register</a>
+      <a class="nav" href="{{ url_for('admin') }}">Admin</a>
     </div>
     <hr />
     {% block content %} {% endblock %}

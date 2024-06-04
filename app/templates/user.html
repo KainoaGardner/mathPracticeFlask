@@ -1,13 +1,22 @@
 {% extends "base.html" %}
 {% block css %}
+<link rel="stylesheet" href="static/user/user.css">
+{% if theme == "dark" %}
+<link rel="stylesheet" href="static/user/user-dark.css">
+{% else %}
+<link rel="stylesheet" href="static/user/user-light.css">
+{% endif %}
+
 {% endblock %}
 {% block title %}Home{% endblock %} {% block content %}
 {% with messages = get_flashed_messages() %} {% if messages %} {% for message in
 messages %}
 <p>{{message}}</p>
 {% endfor %} {% endif %}{% endwith %}
+<div class="background">
 <h1>{{ user.username }}</h1>
 <hr />
+<h2>Stats</h2>
 <p><b>Date Registered:</b> {{ user.registerDate }}</p>
 <p><b>Total Correct:</b> {{ user.totalCorrect }}</p>
 <p><b>Total Problems:</b> {{ user.totalProblems }}</p>
@@ -17,13 +26,16 @@ messages %}
 <hr>
 <h2>Settings</h2>
 <form action="" method="post">
-  <label>Theme</label><br>
+  <label>Theme: </label>
 
   {% if user.theme == "light" %}
-    <input type="submit" name="dark" value="Dark Mode"> 
+
+  <input class="theme theme-light" type="submit" name="light" value="Light Mode"> 
   {% else %}
-  <input type="submit" name="light" value="Light Mode"> 
+
+    <input class="theme theme-dark" type="submit" name="dark" value="Dark Mode"> 
   {% endif %}
 </form>
 
+</div>
 {% endblock %}

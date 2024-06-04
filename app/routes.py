@@ -15,10 +15,12 @@ def user():
     user = User.query.filter_by(username=username).first()
 
     if request.method == "POST":
-        if "light" in request.form:
-            user.theme = "light"
         if "dark" in request.form:
+            user.theme = "light"
+            session["theme"] = "light"
+        if "light" in request.form:
             user.theme = "dark"
+            session["theme"] = "dark"
 
         db.session.commit()
 
@@ -30,7 +32,9 @@ def user():
         percent = 0
     user.totalPercent = percent
 
-    return render_template("user.html", user=user)
+    theme = session["theme"]
+
+    return render_template("user.html", user=user, theme=theme)
 
 
 @app.route("/play", methods=["GET", "POST"])
@@ -59,6 +63,8 @@ def play():
             else:
                 result = "Incorrect"
                 history.insert(0, (f"{equation} = {answer}", 0))
+
+            db.session.commit()
             percent = int((score[0] / score[1]) * 100)
             score[2] = percent
 
@@ -123,8 +129,7 @@ def play():
     session["equation"] = equation
     history = session["history"]
     settings = session["settings"]
-    username = session["username"]
-    user = User.query.filter_by(username=username).first()
+    theme = session["theme"]
 
     return render_template(
         "play.html",
@@ -132,19 +137,32 @@ def play():
         equation=equation,
         history=history,
         settings=settings,
-        user=user,
+        theme=theme,
     )
 
 
 @app.route("/playAnswer", methods=["GET", "POST"])
 def playAnswer():
     if request.method == "POST":
-        return redirect(url_for("play"))
+        if "next" in request.form:
+            return redirect(url_for("play"))
+        elif "apply" in request.form:
+
+            settings = {
+                "digits": request.form["digits"],
+                "problemType": request.form["problemType"],
+            }
+            session["settings"] = settings
+            problemType = None
+            return redirect(url_for("play"))
+
     score = session["score"]
     equation = session["equation"]
     result = session["result"]
     answer = session["answer"]
     history = session["history"]
+    theme = session["theme"]
+    settings = session["settings"]
 
     return render_template(
         "playAnswer.html",
@@ -153,7 +171,8 @@ def playAnswer():
         result=result,
         answer=answer,
         history=history,
-        user=user,
+        theme=theme,
+        settings=settings,
     )
 
 
@@ -190,11 +209,19 @@ def login():
             foundUser.username == username and foundUser.password == password
         ):
             session["username"] = username
+            session["theme"] = foundUser.theme
+
             flash(f"You logged in as {username}")
             return redirect(url_for("user"))
         else:
             flash("User not found")
-    return render_template("login.html")
+
+    if "theme" in session:
+        theme = session["theme"]
+    else:
+        theme = "light"
+
+    return render_template("login.html", theme=theme)
 
 
 @app.route("/logout")
@@ -212,9 +239,6 @@ def logout():
 @app.route("/register", methods=["GET", "POST"])
 def register():
 
-    username = session["username"]
-    user = User.query.filter_by(username=username).first()
-
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
@@ -230,8 +254,12 @@ def register():
             db.session.add(user)
             db.session.commit()
             return redirect(url_for("user"))
+    if "theme" in session:
+        theme = session["theme"]
+    else:
+        theme = "light"
 
-    return render_template("register.html")
+    return render_template("register.html", theme=theme)
 
 
 @app.route("/clearDB")
@@ -265,7 +293,9 @@ def resetStats():
 def admin():
     users = User.query.all()
 
-    username = session["username"]
-    user = User.query.filter_by(username=username).first()
+    if "theme" in session:
+        theme = session["theme"]
+    else:
+        theme = "light"
 
-    return render_template("admin.html", users=users)
+    return render_template("admin.html", users=users, theme=theme)

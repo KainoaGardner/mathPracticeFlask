@@ -1,4 +1,12 @@
-{% extends "base.html" %}{% block title %}Admin{% endblock %} {% block content
+{% extends "base.html" %}{% block title %}Admin{% endblock %} 
+{% block css %}
+<link rel="stylesheet" href="static/admin.css">
+
+{% endblock %}
+
+
+
+{% block content
 %}
 <h1>All Users</h1>
 <a href="{{ url_for('clearDB') }}">Clear all</a>
@@ -6,10 +14,12 @@
 
 {% for user in users %}
 <ol>
-  <li >
+  <ul >
   <p>Username: {{ user.username }}</p>
   <p>Password: {{ user.password }}</p>
   <p>Register Date: {{ user.registerDate }}</p>
-  <li>
+  <ul>
 </ol>
+
+<hr>
 {% endfor %} {% endblock %}

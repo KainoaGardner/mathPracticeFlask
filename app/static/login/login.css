@@ -1,0 +1,33 @@
+.input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 500px;
+  border: solid;
+  border-width: 2px;
+  padding: 20px 100px;
+}
+
+.register,
+.login {
+  margin-top: 10px;
+  display: flex;
+  /* flex-direction: column; */
+  /* width: 100px; */
+  justify-content: center;
+}
+
+.register-button,
+.login-button {
+  padding: 5px 50px;
+}
+
+label {
+  font-size: 20px;
+}

@@ -1,0 +1,43 @@
+.left,
+.middle,
+.right {
+  background-color: #3f3f3f;
+  border-color: #8b8b8b;
+}
+
+.history-correct {
+  background-color: #4e9f3d;
+}
+
+.history-incorrect {
+  background-color: #b33939;
+}
+
+.history-correct,
+.history-incorrect {
+  border-color: #8b8b8b;
+}
+
+.select {
+  background-color: #8b8b8b;
+  border-color: #8b8b8b;
+  color: #ecf0f1;
+}
+
+.digit-text {
+  background-color: #8b8b8b;
+  border-color: #8b8b8b;
+  color: #ecf0f1;
+}
+
+.stats {
+  color: #ecf0f1;
+}
+
+.pa-result-correct {
+  color: #4e9f3d;
+}
+
+.pa-result-incorrect {
+  color: #b33939;
+}

@@ -1,62 +1,104 @@
 {% extends "base.html" %}
-{% block title %}Play{% endblock %} {% block content %}
-<h1>Play</h1>
-<h2>Stats</h2>
-<div>
-<p>Correct: {{ score[0] }}</p>
-<p>Total: {{ score[1] }}</p>
-<p>Percentage: {{ score[2] }}%</p>
-</div>
+{% block title %}Play{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="static/play/play.css">
+{% if theme == "dark" %}
+<link rel="stylesheet" href="static/play/play-dark.css">
+{% else %}
+<link rel="stylesheet" href="static/play/play-light.css">
+{% endif %}
+{% endblock %}
+{% block content %}
+<!-- <h1 class="title">Play</h1> -->
 
-
-<div>
-  <h2>{{equation}}</h2>
-
-  <form action="" method="post">
-    <input type="number" name="input" required><br>
-    <input type="submit" name="answer" value="Answer">
-<br>
-  </form>
-  <h2>Settings</h2>
-  <form action="" method="post">
-    <label for="digits">Digits</label>
-    {% if settings %}
-    <input type="number" name="digits" max="10" min="1" placeholder="2" value="{{ settings['digits'] }}"required><br>
+<div class="flex">
+  <div class="left">
+    <h2 class="history">History</h2>
+    <hr>
+    <div class="history-block">
+    {% for equation in history %}
+    <div class="history-entry">
+    {% if equation[1] == 0 %}
+    <ul class="history-incorrect">{{ equation[0] }}</ul>
     {% else %}
-    <input type="number" name="digits" placeholder="2" max="10" min="1" required><br>
+    <ul class="history-correct">{{ equation[0] }}</ul>
     {% endif %}
+    </div>
+    {% endfor %}
+    </div>
+  </div>
 
-    <label for="problemType">Operator</label>
+  <div class="middle">
+    <div class="equation">
+    <h2 class="equation-text">{{equation}}</h2>
+  
+    <form class="input form" action="" method="post">
+      <input class="text-input answer-text" type="number" name="input" required><br>
+      <div class="answer">
+      <input class="theme answer-button" type="submit" name="answer" value="Answer">
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="right">
+    <div>
+      <h2 class="stats-title">Stats</h2>
+      <div class="stats-row">
+        <p class="stats">Correct: </p>
+        <p class="stats"> {{ score[0] }} </p>
+      </div>
+      <div class="stats-row">
+          <p class="stats">Total: </p>
+        <p class="stats"> {{ score[1] }} </p>
+      </div>
+      <div class="stats-row">
+          <p class="stats">Percentage: </p>
+      <p class="stats"> {{ score[2] }}%</p>
+      </div>
+    </div>
 
-    {% if settings["problemType"] == "*" %}
-    <select name="problemType">
-      <option value="*">*</option>
-      <option value="/">/</option>
-      <option value="+-">+-</option>
-    </select><br>
-    {% elif settings["problemType"] == "/" %}
-    <select name="problemType">
-      <option value="*">*</option>
-      <option value="+-">+-</option>
-      <option value="/">/</option>
-    </select><br> 
-    {% else %}
-    <select name="problemType">
-      <option value="+-">+-</option>
-      <option value="*">*</option>
-      <option value="/">/</option>
-    </select><br>
-    {% endif %}
-    <input type="submit" name="apply" value="Apply">
-  </form>
-</div>
+    <hr>
+    </form>
+    <h2 class="settings">Settings</h2>
 
-
-<div>
-  <h2>History</h2>
-  {% for equation in history %}
-  <li>{{ equation[0] }}</li>
-  {% endfor %}
+    <form action="" method="post">
+      <div class="settings-row">
+      <label for="digits">Digits: </label>
+      {% if settings %}
+      <input class="digit-text" type="number" name="digits" max="10" min="1" placeholder="2" value="{{ settings['digits'] }}"required>
+      {% else %}
+      <input class="digit-text" type="number" name="digits" placeholder="2" max="10" min="1" required>
+      {% endif %}
+      </div>
+  
+      <div class="settings-row">
+      <label for="problemType">Operator:</label>
+  
+      {% if settings["problemType"] == "*" %}
+      <select class="select" name="problemType">
+        <option value="*">*</option>
+        <option value="/">/</option>
+        <option value="+-">+-</option>
+      </select>
+      {% elif settings["problemType"] == "/" %}
+      <select class="select" name="problemType">
+        <option value="*">*</option>
+        <option value="+-">+-</option>
+        <option value="/">/</option>
+      </select> 
+      {% else %}
+      <select class="select" name="problemType">
+        <option value="+-">+-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+      </select>
+      {% endif %}
+      </div>
+      <div class="settings-apply">
+      <input class="theme apply-button" type="submit" name="apply" value="Apply">
+      </div>
+    </form>
+  </div>
 </div>
 {% endblock %}
 
